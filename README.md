@@ -1,40 +1,35 @@
-Layoffs Dataset Cleaning
-Overview
+Project Overview
 
-This SQL script cleans and standardizes the layoffs dataset. The cleaning process removes duplicates, fixes inconsistent values, handles nulls, and prepares the data for analysis. The final cleaned dataset is stored in layoffs_staging2.
+This project demonstrates my ability to clean, transform, and analyze real-world datasets using SQL for data cleaning and Pandas for exploratory data analysis (EDA).
 
-Steps Performed
+Tools & Technologies
 
-Remove Duplicates
+SQL: Data extraction, cleaning, and transformation.
 
-A staging table layoffs_staging is created from the original layoffs table.
+Python (Pandas): EDA, data manipulation, and insights.
 
-Duplicate rows are identified using a ROW_NUMBER() window function and removed in layoffs_staging2.
+Matplotlib: Visualizing trends and patterns in the data.
 
-Standardize Data
+Project Workflow
 
-Trim whitespace from company names.
+Data Cleaning with SQL
 
-Standardize industry names (e.g., all variations of Crypto% → Crypto).
+Removed duplicates, missing values, and inconsistencies.
 
-Correct country names (e.g., 'United Sates.' → 'United States').
+Standardized column formats and ensured data integrity.
 
-Convert date column from text to proper DATE type.
+Exploratory Data Analysis with Pandas
 
-Handle Null or Blank Values
+Calculated summary statistics and distributions.
 
-Identify rows with missing total_laid_off or percentage_laid_off.
+Identified trends and patterns in the dataset.
 
-Replace empty industry values with NULL.
+Created visualizations to communicate key insights.
 
-Fill missing industry values by joining with other rows of the same company and location that have valid industry data.
+Key Learnings
 
-Remove Unnecessary Columns or Rows
+Handling messy datasets efficiently with SQL.
 
-Delete rows where both total_laid_off and percentage_laid_off are NULL.
+Performing comprehensive EDA in Python.
 
-Drop helper columns like row_num that are no longer needed.
-
-Outcome
-
-The layoffs_staging2 table contains a clean, standardized dataset ready for analysis, free from duplicates, inconsistent values, and unnecessary data.
+Translating raw data into actionable insights.
