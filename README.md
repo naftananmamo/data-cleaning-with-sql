@@ -1,28 +1,22 @@
-SQL & Pandas Project
+# SQL & Pandas: Data Cleaning & EDA
 
-Project Overview:
-This project demonstrates data cleaning, transformation, and exploratory analysis. SQL was used to clean and structure the data, and Pandas was used to analyze trends, calculate statistics, and visualize key insights.
+## Project Summary
+This project demonstrates the full workflow of preparing and analyzing data. 
+SQL was used to clean and structure raw datasets, while Pandas was employed 
+to perform exploratory data analysis (EDA) and uncover insights.
 
-Tools & Technologies:
+## Technologies & Tools
+- **SQL:** Data cleaning, removing duplicates, handling missing values, and data transformation
+- **Python (Pandas):** Data analysis, aggregation, and computation of summary statistics
+- **Matplotlib:** Visualization of trends and key patterns
 
-SQL: data cleaning and transformation
+## Workflow
+1. **Data Cleaning (SQL):** Standardized column names, removed duplicates, handled missing or inconsistent data
+2. **Data Analysis (Pandas):** Explored datasets, computed key metrics, summarized findings
+3. **Visualization (Matplotlib):** Created charts to highlight trends and insights
 
-Python (Pandas): data analysis and manipulation
+## Key Learnings
+- Applying SQL for structured data cleaning
+- Leveraging Pandas for thorough exploratory data analysis
+- Turning cleaned data into actionable insights
 
-Matplotlib: data visualization
-
-Project Workflow:
-
-Cleaned raw data using SQL: removed duplicates, handled missing values, standardized columns
-
-Explored data using Pandas: calculated summary statistics, identified trends and patterns
-
-Visualized insights with Matplotlib
-
-Key Learnings:
-
-Efficient data cleaning using SQL
-
-Performing comprehensive exploratory data analysis (EDA) with Pandas
-
-Converting raw data into actionable insights
