@@ -1,61 +1,40 @@
-Data Cleaning: Layoffs Dataset
+Layoffs Dataset Cleaning
 Overview
 
-This SQL script performs data cleaning and standardization on the layoffs dataset. The goal is to remove duplicates, standardize values, handle nulls, and prepare the dataset for further analysis.
+This SQL script cleans and standardizes the layoffs dataset. The cleaning process removes duplicates, fixes inconsistent values, handles nulls, and prepares the data for analysis. The final cleaned dataset is stored in layoffs_staging2.
 
-The cleaned dataset is stored in a new table called layoffs_staging2.
+Steps Performed
 
-Steps in the Script
-1. Remove Duplicates
+Remove Duplicates
 
-Create a staging table layoffs_staging to work on a copy of the original data.
+A staging table layoffs_staging is created from the original layoffs table.
 
-Identify duplicate rows based on all columns using a ROW_NUMBER() window function.
+Duplicate rows are identified using a ROW_NUMBER() window function and removed in layoffs_staging2.
 
-Insert unique rows into layoffs_staging2 and remove duplicates.
+Standardize Data
 
-SQL Highlights:
+Trim whitespace from company names.
 
-ROW_NUMBER() OVER(PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, date, stage, country, funds_raised_millions) AS row_num
+Standardize industry names (e.g., all variations of Crypto% → Crypto).
 
-2. Standardize Data
+Correct country names (e.g., 'United Sates.' → 'United States').
 
-Remove leading and trailing spaces in the company column.
+Convert date column from text to proper DATE type.
 
-Standardize industry names, e.g., all variations of Crypto% → 'Crypto'.
+Handle Null or Blank Values
 
-Fix country names, e.g., 'United Sates.' → 'United States'.
+Identify rows with missing total_laid_off or percentage_laid_off.
 
-Convert the date column from text to DATE type for proper date handling.
+Replace empty industry values with NULL.
 
-SQL Highlights:
+Fill missing industry values by joining with other rows of the same company and location that have valid industry data.
 
-UPDATE layoffs_staging2 SET company = TRIM(company);
-UPDATE layoffs_staging2 SET industry = 'Crypto' WHERE industry LIKE 'Crypto%';
-ALTER TABLE layoffs_staging2 MODIFY COLUMN `date` DATE;
-
-3. Handle Null or Blank Values
-
-Identify rows where total_laid_off and percentage_laid_off are NULL.
-
-Replace empty strings in industry with NULL.
-
-Use non-null values from other rows of the same company/location to fill missing industry values.
-
-SQL Highlights:
-
-UPDATE layoffs_staging2 t1
-JOIN layoffs_staging2 t2 ON t1.company = t2.company AND t1.location = t2.location
-SET t1.industry = t2.industry
-WHERE t1.industry IS NULL AND t2.industry IS NOT NULL;
-
-4. Remove Unnecessary Columns or Rows
+Remove Unnecessary Columns or Rows
 
 Delete rows where both total_laid_off and percentage_laid_off are NULL.
 
-Remove helper columns such as row_num that are no longer needed.
+Drop helper columns like row_num that are no longer needed.
 
-SQL Highlights:
+Outcome
 
-DELETE FROM layoffs_staging2 WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
-ALTER TABLE layoffs_staging2 DROP COLUMN row_num;
+The layoffs_staging2 table contains a clean, standardized dataset ready for analysis, free from duplicates, inconsistent values, and unnecessary data.
